@@ -42,13 +42,10 @@
 </div> 
 
 <div class="nail-colors">
-    <div class="color-block">
-        <div style="background-color: darkolivegreen"></div>
-        <div style="background-color: darkorange"></div>
-        <div style="background-color: tan"></div>
-        <div style="background-color: maroon"></div>
-        <div style="background-color: saddlebrown"></div>
-    </div>
+    @foreach(string color in ViewBag.nailColors)
+    {
+        <div class="color-block" style="background-color:@color"></div>
+    }
 </div>
 
 
