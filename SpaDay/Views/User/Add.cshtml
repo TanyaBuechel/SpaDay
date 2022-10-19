@@ -4,28 +4,44 @@
 @{
 }
 
+
+
+
 <h1>Add User</h1>
 <form method="post" action="/user">
     <div class="form-group">
-   <label>
-      Username
-   </label>
-      <input type="text" name="username">
-  
-   <label>
-      Email
-   </label>
-      <input type="email" name="email">
-  
-    <label>
-      Password
-    </label>
-      <input type="password" name="password">
 
-      <label>
-      Verify Password
-    </label>
-      <input type="password" name="verify">
+        <label>
+            Username:
+        </label>
+            <input type="text" name="username"/>
+   <br />
+  
+        <label>
+            Email:
+         </label>
+            <input type="email" name="email"/>
+
+   <br />
+
+   @if (ViewBag.error == true) {
+    <div class="alert alert-danger" role="alert">
+        Your passwords must match!
+    </div>
+}
+        <label>
+            Password:
+         </label>
+            <input type="password" name="password"/>
+   <br />
+
+         <label>
+            Verify Password:
+         </label>
+            <input type="password" name="verify"/>
+   <br />
+
  </div>
+
  <input type="submit" value="Add User" />
 </form>
