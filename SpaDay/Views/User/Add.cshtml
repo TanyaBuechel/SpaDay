@@ -1,34 +1,51 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<h1>Sign Up Form</h1>
 
-
-
-
-<h1>Add User</h1>
 <form method="post" action="/user">
-    <div class="form-group">
+    
+    @if (ViewBag.error == true)
+    {
+       <div class="alert alert-danger" role="alert">
+        Passwords do not match. Try again.
+        </div>
+    }
+    
 
         <label>
             Username:
         </label>
+
+        @*If there is no error, Username field is blank. 
+          If there is an error, Username field contains newUser's Username property*@
+        @if (ViewBag.error == null)
+        {
             <input type="text" name="username"/>
-   <br />
+        }
+        else
+        {
+            <input type="text" name="username" value="@ViewBag.userName"/>
+        }
+
+  <br />
   
         <label>
             Email:
          </label>
+
+          @*If there is no error, Email field is blank. 
+          If there is an error, Email field contains newUser's Email property*@
+        @if (ViewBag.error == null)
+        {
             <input type="email" name="email"/>
+        }
+        else
+        {
+            <input type="email" name="email" value="@ViewBag.email"/>
+        }
 
-   <br />
+  <br />
 
-   @if (ViewBag.error == true) {
-    <div class="alert alert-danger" role="alert">
-        Your passwords must match!
-    </div>
-}
+    
+
         <label>
             Password:
          </label>
@@ -41,7 +58,8 @@
             <input type="password" name="verify"/>
    <br />
 
- </div>
+ 
 
  <input type="submit" value="Add User" />
+
 </form>

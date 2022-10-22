@@ -6,16 +6,13 @@ namespace SpaDay.Controllers
     public class UserController : Controller
     {
         // GET: /<controller>/
-        [HttpGet]
-        [Route("/user/")]
         public IActionResult Index()
         {
             return View();
         }
 
         // GET: /<controller>/add
-        [HttpGet]
-        [Route("/user/add")]
+        // Render the form
         public IActionResult Add()
         {
             return View();
@@ -26,24 +23,21 @@ namespace SpaDay.Controllers
         [Route("/user/")]
         public IActionResult SubmitAddUserForm(User newUser, string verify)
         {
-            ViewBag.username = newUser.Username;
-            ViewBag.password = newUser.Password;
-            if (ViewBag.password == verify)
+            // If the passwords match, return newUser to Index
+            if (newUser.Password == verify)
             {
+                ViewBag.error = false;
+                ViewBag.newUser = newUser;
                 return View("Index");
             }
             else
             {
+            // If the passwords do not match, send error message, render form again, and return username and email fields.
                 ViewBag.error = true;
-                return Redirect("/user/add");
+                ViewBag.userName = newUser.Username;
+                ViewBag.email = newUser.Email;
+                return View("Add");
             }
-            
-            //if (ViewBag.password != verify)
-            //{
-            //    ViewBag.error = true;
-            //    return Redirect("/user/add");
-           // }
-           // return View("Index");
         }
         
     }
